@@ -1,0 +1,14 @@
+javac *.java
+rmic AddC
+start rmiregistry(on windows)  /  rmiregistry&
+java Server(on current terminal)
+java Client(on other terminal)
+
+
+
+
+java -Djava.security.manager -Djava.security.policy=Server.policy Server
+
+
+
+java -Djava.rmi.server.codebase=http://172.16.80.71/ -Djava.security.policy=Server.policy Client
