@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -64,7 +65,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
 			int mylen = in.read(mydata);
 			while (mylen > 0) {
 
-				clientImpl.sendData(fname, mydata, mylen);
+				clientImpl.recieveDataOnClient(fname, mydata, mylen);
 				mylen = in.read(mydata);
 
 			}
@@ -74,6 +75,29 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerI
 			e.printStackTrace();
 		}
 
+		return true;
+	}
+
+	@Override
+	public boolean recieveDataOnServer(String filename, byte[] data, int len) throws RemoteException {
+		try {
+			String path_where_server_saves="/home/arjun/kiet1/";
+			File f= new File(path_where_server_saves+filename);
+			f.createNewFile();
+			FileOutputStream out=new FileOutputStream(f, true);
+			out.write(data, 0, len);
+			out.flush();
+			out.close();
+			System.out.println("Done writing data...");
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 		return true;
 	}
 

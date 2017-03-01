@@ -74,6 +74,13 @@ public class StartClient {
 			serverInt.fileDownload(clientImpl);
 			
 			
+			clientImpl.setFile("/home/arjun/Downloads/", "str.ppt");
+			
+			clientImpl.fileUpload(serverInt);
+			
+			
+			
+			
 			System.out.println("Listening.....");			
 			Scanner s=new Scanner(System.in);			
 			while(true){
